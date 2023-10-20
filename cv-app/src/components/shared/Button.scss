@@ -1,0 +1,51 @@
+button {
+  background: none;
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.dark-btn {
+  // margin-top: 100px;
+  // margin-left: 58px;
+  background-color: #222935;
+}
+
+// .goback-btn {
+//   display: flex;
+//   gap: 10px;
+//   .goback-btn-txt {
+//     display: block;
+//   }
+// }
+
+.goback-btn {
+  display: flex;
+  padding: 175px 67px;
+  gap: 5px;
+}
+
+.edit-btn {
+  position: relative;
+  bottom: 169px;
+  left: 245px;
+  margin: 0;
+  bottom: 80px;
+  left: 287px;
+  padding: 10px 20px 10px 20px;
+}
+
+@media (max-width: 600px) {
+  .goback-btn-txt {
+    display: none;
+  }
+  .goback-btn {
+    background-color: #26c17e;
+    border-radius: 5px;
+    padding: 6px 13px;
+
+    margin-left: 12px;
+    margin-top: 150px;
+  }
+}

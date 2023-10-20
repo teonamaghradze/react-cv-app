@@ -1,0 +1,12 @@
+.whole-inner-page {
+  display: flex;
+  margin-left: 310px;
+  margin-right: 150px;
+}
+
+@media (max-width: 600px) {
+  .whole-inner-page {
+    margin-left: 100px;
+    margin-right: 50px;
+  }
+}

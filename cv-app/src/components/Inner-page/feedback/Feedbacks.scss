@@ -1,0 +1,26 @@
+.feedbacks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin-bottom: 50px;
+}
+.person-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 13px;
+}
+
+.feedback-box {
+  p {
+    background-color: #eeeeee;
+    padding: 15px;
+  }
+}
+
+.profession {
+  span:last-child {
+    color: #26c17e;
+    font-weight: 500;
+  }
+}

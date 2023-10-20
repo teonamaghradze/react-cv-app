@@ -1,0 +1,22 @@
+.main-page-cover {
+  background-image: url("../../assets/images/background.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  color: white;
+  padding-top: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  .btn-color-dark {
+    background-color: #222935;
+    padding: 10px 20px 10px 20px;
+  }
+  .btn-color-dark:hover {
+    background-color: #26c17e;
+  }
+  .main-title {
+    text-align: center;
+  }
+}

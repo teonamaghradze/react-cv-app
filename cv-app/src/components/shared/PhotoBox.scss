@@ -1,0 +1,27 @@
+.photo-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  img {
+    width: 150px;
+  }
+  .fullname {
+    font-weight: 700;
+    font-size: 45px;
+    text-align: center;
+  }
+
+  .profession {
+    font-weight: 600;
+    font-size: 25px;
+  }
+
+  .description {
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    width: 500px;
+  }
+}

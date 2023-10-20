@@ -1,0 +1,30 @@
+.panel-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-left: 25px;
+  margin-top: 25px;
+  section {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    color: #667081;
+  }
+  section:hover {
+    color: #26c17e;
+    cursor: pointer;
+  }
+  p {
+    display: block;
+  }
+
+  .education {
+    margin-left: -4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .panel-container section p {
+    display: none;
+  }
+}

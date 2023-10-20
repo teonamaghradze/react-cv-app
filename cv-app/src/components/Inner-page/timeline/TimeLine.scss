@@ -1,0 +1,29 @@
+.timeline-container {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+
+  h4::after {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 105px;
+    background-color: #26c17e;
+    margin-left: 13px;
+    margin-top: 13px;
+  }
+  section {
+    background-color: #eeeeee;
+    margin-bottom: 15px;
+    padding: 15px;
+    p {
+      margin-top: 10px;
+    }
+  }
+}
+
+.timeline {
+  height: 30vh;
+  max-height: 80vh;
+  overflow-y: auto;
+}

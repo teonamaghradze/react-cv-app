@@ -1,0 +1,13 @@
+.experience-container {
+  display: flex;
+  gap: 50px;
+  .company-date {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 50px;
+    > p {
+      width: 69px;
+    }
+  }
+}
