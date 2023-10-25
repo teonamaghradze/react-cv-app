@@ -58,9 +58,9 @@ function InnerPage() {
           <Box title="Experience" mainTxt={<Experience />} />
         </section>
 
-        {/* <section ref={skillsRef}>
-          <Box title="Skills" mainTxt={<Skills />} />
-        </section> */}
+        <section ref={skillsRef}>
+          <Box title={"Skills"} mainTxt={<Skills />} />
+        </section>
 
         <section ref={portfolioRef}>
           <Box title="Portfolio" mainTxt={<Portfolio />} />
