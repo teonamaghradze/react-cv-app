@@ -17,7 +17,15 @@ const SkillForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addSkill({ skillName, skillRange }));
+    fetch("api/skills", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ skillName, skillRange }),
+    })
+      .then((res) => res.json())
+      .then((data) => dispatch(addSkill(data.skills)));
   };
 
   return (
