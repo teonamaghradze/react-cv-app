@@ -12,10 +12,6 @@ import {
 } from "./skillsSlice";
 import { ClipLoader } from "react-spinners";
 
-/////////////////
-//WARNING! this component paints over the next component(teona fix this)<<<<<<<
-/////////////////
-
 function Skills() {
   const dispatch = useDispatch();
   //pull skills from the redux store
@@ -29,7 +25,6 @@ function Skills() {
       fetch("api/skills")
         .then((res) => res.json())
         .then((data) => {
-          //in real case we will need to try to pull data from the server if we do not have skills in local redux store
           addSkillsFromServer(data.skills);
           dispatch(toggleSkillsLoading());
         })
@@ -55,7 +50,7 @@ function Skills() {
         />
       </div>
       {isFormShowing && <SkillForm />}
-      <div style={{ height: 5, paddingBottom: 50 }}>
+      <div className="skills-level">
         <div
           style={{
             paddingBottom: 30,
@@ -66,7 +61,7 @@ function Skills() {
           }}
         >
           {isLoading ? (
-            <ClipLoader color="#36d7b7" /> // <<<<<<<<<<<< WARNING!!! This loader is not centered
+            <ClipLoader color="#36d7b7" />
           ) : (
             skills.map((skill) => {
               return (

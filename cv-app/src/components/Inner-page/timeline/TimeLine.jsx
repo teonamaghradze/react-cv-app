@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import "./TimeLine.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ function TimeLine() {
   const educations = useSelector((state) => state.education.educations);
   const isLoading = useSelector((state) => state.education.isLoading);
   const dispatch = useDispatch();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     // Fetch education data when the component mounts
@@ -20,6 +21,7 @@ function TimeLine() {
       })
       .catch((err) => {
         console.error(err);
+        setError("Something went wrong; please review your server connection!");
         dispatch(toggleLoading());
       });
   }, [dispatch]);
@@ -27,15 +29,11 @@ function TimeLine() {
   return (
     <div className="timeline">
       {isLoading ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "5%",
-          }}
-        >
+        <div>
           <ClipLoader color="#36d7b7" />
         </div>
+      ) : error ? (
+        <div className="error-message">{error}</div>
       ) : (
         educations
           .slice()

@@ -1,65 +1,87 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { addSkill } from "./skillsSlice";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
+import "./SkillForm.scss";
 
 const SkillForm = () => {
-  const [skillName, setSkillName] = useState("");
-  const [skillRange, setskillRange] = useState("");
   const dispatch = useDispatch();
 
-  const formFieldsAreValid = (name, range) => {
-    if (name === "") return false;
-    if (range === "") return false;
-    if (isNaN(range)) return false;
-    if (+range < 10 || +range > 100) return false;
-    return true;
+  const initialValues = {
+    skillName: "",
+    skillRange: "",
   };
+  const validationSchema = Yup.object().shape({
+    skillName: Yup.string().required("Skill name is a required field"),
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    skillRange: Yup.number()
+      .typeError("Skill range must be a 'number' type")
+      .required("Skill range is a required field")
+      .min(10, "Skill range must be greater than or equal to 10")
+      .max(100, "Skill range must be less than or equal to 100"),
+  });
+
+  const onSubmit = (values, { resetForm }) => {
     fetch("api/skills", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ skillName, skillRange }),
+      body: JSON.stringify(values),
     })
       .then((res) => res.json())
-      .then((data) => dispatch(addSkill(data.skills)));
+      .then((data) => {
+        dispatch(addSkill(data.skills));
+        resetForm();
+      });
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ paddingBottom: 50 }}>
-      <div>
-        <label htmlFor="skill-name">Skill name</label>
-        <input
-          placeholder="Enter skill name"
-          type="text"
-          value={skillName}
-          onChange={(e) => setSkillName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="skill-level">Skill level</label>
-        <input
-          placeholder="Enter skill level"
-          type="text"
-          value={skillRange}
-          onChange={(e) => setskillRange(e.target.value)}
-        />
-      </div>
-      <button
-        style={{
-          color: "black",
-          border: "1px solid green",
-          padding: 10,
-        }}
-        type="submit"
-        disabled={!formFieldsAreValid(skillName, skillRange)}
-      >
-        Add skill
-      </button>
-    </form>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      {({ isSubmitting, errors, touched, isValid }) => (
+        <Form>
+          <div>
+            <label htmlFor="skillName">Skill name</label>
+            <Field
+              type="text"
+              id="skillName"
+              name="skillName"
+              placeholder="Enter skill name"
+              className={`${
+                errors.skillName && touched.skillName ? "field-error" : ""
+              }`}
+            />
+            <ErrorMessage name="skillName" component="div" className="error" />
+          </div>
+          <div>
+            <label htmlFor="skillRange">Skill range</label>
+            <Field
+              type="text"
+              id="skillRange"
+              name="skillRange"
+              placeholder="Enter skill range"
+              className={`${
+                errors.skillRange && touched.skillName ? "field-error" : ""
+              }`}
+            />
+            <ErrorMessage name="skillRange" component="div" className="error" />
+          </div>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={isValid ? "valid-button" : "btn"}
+          >
+            Add skill
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 

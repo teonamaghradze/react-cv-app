@@ -27,4 +27,17 @@
   height: 30vh;
   max-height: 80vh;
   overflow-y: auto;
+
+  .error-message {
+    color: red;
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+  }
+
+  div:first-child {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+  }
 }
